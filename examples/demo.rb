@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require_relative '../lib/remote-os/demo'
+require_relative '../lib/guess_os/demo'
 
 # 2211 win10 | /cygdrive/c/Users/vagrant
 # 'lsb_release -d'
