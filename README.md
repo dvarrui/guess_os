@@ -27,3 +27,19 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/guess_os.
+
+# GuessOS
+
+Try to guess the operating system installed on the host (local or remote)
+
+# Documentation
+
+1. Install Ruby on your system.
+1. `gem install --user-install guess-os`, to install gem.
+
+# Use
+
+
+# Contact
+
+* **Email**: `teuton.software@protonmail.com`
