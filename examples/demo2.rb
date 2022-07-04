@@ -17,3 +17,5 @@ conn = host.create_conn
 cmd = 'lsb_release -d'
 puts "\n==> Execute command: #{cmd}"
 puts "    #{conn.exec(cmd)}"
+
+host.type.show_info

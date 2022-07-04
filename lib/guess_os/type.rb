@@ -12,9 +12,12 @@ module GuessOS
 
     def show_info
       puts "\n"
-      puts '==> Show Type info'
+      puts "==> Show Type info (#{@host.ip}:#{@host.port})"
       puts "    desc = #{@desc}"
       puts "    name = #{@name}"
+    end
+
+    def guess
     end
   end
 end

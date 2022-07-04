@@ -5,7 +5,8 @@ require_relative 'conn'
 module GuessOS
   class Host
     attr_reader :ip, :port, :username, :password
-
+    attr_reader :type
+    
     def initialize(args = {})
       @ip = args[:ip] || 'localhost'
       @port = args[:port] || '22'
