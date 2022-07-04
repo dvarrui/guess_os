@@ -51,7 +51,7 @@ module GuessOS
     end
 
     def self.guess_windows(host)
-      command = 'cat /etc/rc.d/minixrc |grep MINIX| head -n 1'
+      command = 'echo %windir%'
       conn = GuessOS::Conn.new(host)
 
       conn.exec(command)
@@ -59,8 +59,8 @@ module GuessOS
 
       output = conn.last_output
       items = output.split
-      type =  'minix'
-      name =  'minix'
+      type =  'windows'
+      name =  'windows'
       desc =  output.gsub("\n", '')
       OS.new(type, name, desc)
     end

@@ -23,6 +23,8 @@ host = GuessOS::Host.new(
 puts host.os.name
 ```
 
+> More [examples](examples)
+
 # Contact
 
 * **Email**: `teuton.software@protonmail.com`
