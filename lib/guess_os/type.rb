@@ -11,13 +11,15 @@ module GuessOS
       os = guess_minix(host)
       return os unless os.type == :unkown
 
+      os = guess_cygwin(host)
+      return os unless os.type == :unkown
+
       os
     end
 
     def self.guess_gnulinux(host)
-      list = %w(debian ubuntu opensuse manjaro)
-      command = 'lsb_release -d'
       conn = GuessOS::Conn.new(host)
+      command = 'lsb_release -d'
 
       conn.exec(command)
       return OS.new(:unkown, :unkown, conn.status) unless conn.ok
@@ -28,6 +30,7 @@ module GuessOS
       name =  items[1]&.downcase
       desc =  output
 
+      list = %w(debian ubuntu opensuse manjaro)
       unless list.include? name
         return OS.new(:unkown, :unkown, 'Unkown OS')
       end
@@ -36,8 +39,8 @@ module GuessOS
     end
 
     def self.guess_minix(host)
-      command = 'cat /etc/rc.d/minixrc |grep MINIX| head -n 1'
       conn = GuessOS::Conn.new(host)
+      command = 'cat /etc/rc.d/minixrc |grep MINIX| head -n 1'
 
       conn.exec(command)
       return OS.new(:unkown, :unkown, conn.status) unless conn.ok
@@ -50,17 +53,16 @@ module GuessOS
       OS.new(type, name, desc)
     end
 
-    def self.guess_windows(host)
-      command = 'echo %windir%'
+    def self.guess_cygwin(host)
       conn = GuessOS::Conn.new(host)
-
+      command = 'pwd'
       conn.exec(command)
-      return OS.new(:unkown, :unkown, conn.status) unless conn.ok
 
-      output = conn.last_output
-      items = output.split
-      type =  'windows'
-      name =  'windows'
+      identified = conn.ok && conn.last_output.include? '/cygdrive'
+      return OS.new(:unkown, :unkown, conn.status) unless identified
+
+      type =  'cygwin'
+      name =  'cygwin'
       desc =  output.gsub("\n", '')
       OS.new(type, name, desc)
     end
