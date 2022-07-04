@@ -10,7 +10,7 @@ module GuessOS
       output = conn.exec(command)
       items = output.split
 
-      type =  items[2].downcase
+      type =  'gnu/linux'
       name =  items[1].downcase
       desc =  output
 

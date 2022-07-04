@@ -3,8 +3,8 @@
 text = <<-TEXT
   apt install -y vim tree nmap
   apt install -y git
-
   apt install -y figlet
+
   figlet ubuntu > /etc/motd
   echo "" >> /etc/motd
   echo "David Vargas Ruiz" >> /etc/motd
