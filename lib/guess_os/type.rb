@@ -36,7 +36,7 @@ module GuessOS
     end
 
     def self.guess_minix(host)
-      command = 'cat /etc/motd |grep MINIX'
+      command = 'cat /etc/rc.d/minixrc |grep MINIX| head -n 1'
       conn = GuessOS::Conn.new(host)
 
       conn.exec(command)
@@ -45,8 +45,23 @@ module GuessOS
       output = conn.last_output
       items = output.split
       type =  'minix'
-      name =  items[7]&.downcase
-      desc =  output
+      name =  'minix'
+      desc =  output.gsub("\n", '')
+      OS.new(type, name, desc)
+    end
+
+    def self.guess_windows(host)
+      command = 'cat /etc/rc.d/minixrc |grep MINIX| head -n 1'
+      conn = GuessOS::Conn.new(host)
+
+      conn.exec(command)
+      return OS.new(:unkown, :unkown, conn.status) unless conn.ok
+
+      output = conn.last_output
+      items = output.split
+      type =  'minix'
+      name =  'minix'
+      desc =  output.gsub("\n", '')
       OS.new(type, name, desc)
     end
 

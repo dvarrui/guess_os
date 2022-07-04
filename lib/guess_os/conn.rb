@@ -16,6 +16,13 @@ module GuessOS
     end
 
     def exec(command)
+      remote_exec(command)
+    end
+
+    def local_exec(command)
+    end
+
+    def remote_exec(command)
       @ok = false
       output = 'Error'
       begin
