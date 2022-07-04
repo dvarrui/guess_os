@@ -11,4 +11,6 @@ host = GuessOS::Host.new(
   password: 'vagrant'
 )
 
+puts '=' * 50 + "\n"
+
 puts host.os.to_s
