@@ -13,5 +13,15 @@ module GuessOS
       @password =  args[:password] || 'vagrant'
       @os = GuessOS::Type.guess(self)
     end
+
+    def local?
+      return true if (ip == 'localhost') || (ip == '127.0.0.1')
+
+      false
+    end
+
+    def remote?
+      !local?
+    end
   end
 end

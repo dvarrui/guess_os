@@ -11,19 +11,32 @@ module GuessOS
     def initialize(host)
       @host = host
       @last_output = ''
-      @status = :unkown
+      @status = nil
       @ok = nil
     end
 
     def exec(command)
+      @ok = :unkown
+      @status = :unkown
+
+      return local_exec(command) if host.local?
       remote_exec(command)
     end
 
     def local_exec(command)
+      output = `command`
+      if $?.exitstatus.zero?
+        @ok = true
+        @status = 'Ok'
+      else
+        @ok = false
+        @status = "Exit status: #{$?.exitstatus}"
+      end
+
+      @last_output = output
     end
 
     def remote_exec(command)
-      @ok = false
       output = 'Error'
       begin
         session = Net::SSH.start(@host.ip,
