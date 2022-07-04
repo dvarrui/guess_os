@@ -53,6 +53,7 @@ module GuessOS
       type =  'windows'
       name =  'windows'
       desc =  output.gsub("\r", '')
+      desc.gsub!("\n", '')
       OS.new(type, name, desc)
     end
 

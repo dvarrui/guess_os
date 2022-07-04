@@ -62,6 +62,10 @@ module GuessOS
         puts('* Remove the existing entry in your local known_hosts file')
         puts("* Try this => ssh-keygen -f '/home/USERNAME/.ssh/known_hosts' " \
             "-R #{@host.ip}")
+      rescue SocketError
+        @status = "[ERROR] SocketError with IP/port [#{@host.ip}:#{@host.port}]"
+      rescue Errno::ECONNREFUSED
+        @status = "[ERROR] ConnRefused: SSH on [#{@host.username}@#{@host.ip}:#{@host.port}]"
       rescue StandardError => e
         @status = "[#{e.class}] SSH on <#{@host.username}@#{@host.ip}:#{@host.port}>" \
             " exec: #{command}"
