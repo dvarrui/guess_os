@@ -43,7 +43,9 @@ module GuessOS
       command = 'cat /etc/rc.d/minixrc |grep MINIX| head -n 1'
 
       conn.exec(command)
-      return OS.new(:unkown, :unkown, conn.status) unless conn.ok
+
+      identified = conn.ok && conn.last_output.include?('MINIX')
+      return OS.new(:unkown, :unkown, conn.status) unless identified
 
       output = conn.last_output
       items = output.split
@@ -61,6 +63,7 @@ module GuessOS
       identified = conn.ok && conn.last_output.include?('/cygdrive')
       return OS.new(:unkown, :unkown, conn.status) unless identified
 
+      output = conn.last_output
       type =  'cygwin'
       name =  'cygwin'
       desc =  output.gsub("\n", '')
