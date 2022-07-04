@@ -1,32 +1,34 @@
 
-require_relative 'ai'
+require_relative 'conn'
+require_relative 'os'
 
 module GuessOS
-  class Type
-    attr_reader :host
-    attr_reader :name, :desc
+  module Type
+    def self.guess(host)
+      command = 'lsb_release -d'
+      conn = GuessOS::Conn.new(host)
+      output = conn.exec(command)
+      items = output.split
 
-    def initialize(host)
-      @host = host
-      @name = :unkown
-      @desc = :unkown
+      type =  items[2].downcase
+      name =  items[1].downcase
+      desc =  output
+
+      OS.new(type, name, desc)
     end
 
-    def show_info
-      puts "\n"
-      puts "==> Show Type info (#{@host.ip}:#{@host.port})"
-      puts "    name = #{@name}"
-      puts "    desc = #{@desc}"
-    end
+    def revise_guess(host)
+      commands = {
+        win10: 'pwd',
+        winserver: 'echo %windir%',
+        minix: 'cat /etc/motd |grep MINIX'
+      }
 
-    def to_s
-      { name: @name, desc: @desc}
-    end
-
-    def guess
-      data = GuessOS::AI.guess_gnulinux(@host)
-      @name = data[:name]
-      @desc = data[:desc]
+      position = {
+        win10: 0,
+        winserver: 0,
+        minix: 7
+      }
     end
   end
 end

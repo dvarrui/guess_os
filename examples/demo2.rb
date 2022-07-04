@@ -27,5 +27,6 @@ puts "    #{conn.exec(cmd)}"
 
 puts "\n"
 puts "==> Show Type info (#{host.ip}:#{host.port})"
-puts "    name = #{host.os[:name]}"
-puts "    desc = #{host.os[:desc]}"
+puts "    type = #{host.os.type}"
+puts "    name = #{host.os.name}"
+puts "    desc = #{host.os.desc}"

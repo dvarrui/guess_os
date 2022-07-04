@@ -1,21 +1,17 @@
 
-require_relative 'ai'
+require_relative 'type'
 
 module GuessOS
   class Host
     attr_reader :ip, :port, :username, :password
-    attr_reader :type
+    attr_reader :os
 
     def initialize(args = {})
       @ip = args[:ip] || 'localhost'
       @port = args[:port] || '22'
       @username = args[:username] || 'root'
       @password =  args[:password] || 'vagrant'
-      @type = GuessOS::AI.guess_type(self)
-    end
-
-    def os
-      @type.to_s
+      @os = GuessOS::Type.guess(self)
     end
   end
 end
