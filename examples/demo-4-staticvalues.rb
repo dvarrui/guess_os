@@ -4,13 +4,9 @@ require_relative '../lib/guess_os/host'
 require_relative '../lib/guess_os/conn'
 
 puts "[GuessOS] #{$0}"
+puts '-' * 50 
 
-host = GuessOS::Host.new(
-  ip: 'localhost',
-  port: 2241,
-  username: 'vagrant',
-  password: 'vagrant'
-)
+host = GuessOS::Host.new(ip: 'localhost')
 
 puts "\n"
 puts "==> Show host info"

@@ -58,7 +58,7 @@ module GuessOS
       command = 'pwd'
       conn.exec(command)
 
-      identified = conn.ok && conn.last_output.include? '/cygdrive'
+      identified = conn.ok && conn.last_output.include?('/cygdrive')
       return OS.new(:unkown, :unkown, conn.status) unless identified
 
       type =  'cygwin'
