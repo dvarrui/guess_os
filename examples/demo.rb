@@ -10,28 +10,14 @@ require_relative '../lib/guess_os/demo'
 # 2251 => manjaro  | Manjaro_Linux
 # 2252 => mimix3 | Manjaro_Linux
 
-ports = { 
+ports = {
   win10: '2211',     winserver: '2221',
   opensuse: '2231',
   debian: '2241',    ubuntu: '2242',
   manjaro: '2251',   minix: '2252'
 }
 
-osname = ARGV.first
-if osname.nil?
-  puts "Opciones : #{ports.keys.sort.join(', ').to_s}"
-  exit 1
-end
-
-osname = osname.to_sym
-remote_host = Demo.new(
-  ip: 'localhost',      
-  port: ports[osname],
-  username: 'vagrant',  
-  password: 'vagrant'
-)
-
-commands = { 
+commands = {
   win10: 'pwd',
   winserver: 'echo %windir%',
   opensuse: 'lsb_release -d',
@@ -51,9 +37,24 @@ position = {
   minix: 7
 }
 
-remote_host.guess_type(
+osname = ARGV.first
+if osname.nil?
+  puts "Opciones : #{ports.keys.sort.join(', ').to_s}"
+  exit 1
+end
+
+osname = osname.to_sym
+host = GuessOS::Host.new(
+  ip: 'localhost',
+  port: ports[osname],
+  username: 'vagrant',
+  password: 'vagrant'
+)
+host.show_info
+
+conn = GuessOS::Conn.new(host)
+conn.guess_type(
   command: commands[osname],
   position: position[osname]
 )
-
-remote_host.show_info
+conn.show_info

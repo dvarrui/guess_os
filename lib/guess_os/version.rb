@@ -2,5 +2,5 @@
 
 module GuessOs
   VERSION = "0.1.0"
-  NAME = 'guess-os'
+  NAME = 'guess_os'
 end

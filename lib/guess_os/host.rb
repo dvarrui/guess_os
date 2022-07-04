@@ -1,29 +1,28 @@
-#!/usr/bin/env ruby
 
-require_relative 'guess-os'
+require_relative 'conn'
 
-module RemoteOS
-  class RemoteHost
-    attr_reader :os
+module GuessOS
+  class Host
+    attr_accessor :ip, :port, :username, :password
 
-    def initialize(args)
+    def initialize(args = {})
       @ip = args[:ip] || 'localhost'
       @port = args[:port] || '22'
       @username = args[:username] || 'root'
       @password =  args[:password] || 'vagrant'
-      @os = :unkown
-      @osname = :unkown
-      @command = 'lsb_release -d'
+      @last_output = ''
     end
 
     def show_info
-      puts "\n[ RemoteHost ]\n"
+      puts "\n[GuessOS] Host info\n"
       puts "  ip       => #{@ip}"
       puts "  port     => #{@port}"
       puts "  username => #{@username}"
       puts "  password => #{@password}"
-      puts "\n[ OS ]\n"
-      puts "  desc     <= #{@desc}"
-      puts "  name     <= #{@name}"
     end
+
+    def create_conn
+      GuessOS::Conn.new(self)
+    end
+  end
 end

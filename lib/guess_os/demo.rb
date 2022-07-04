@@ -1,7 +1,9 @@
 
-require_relative 'ssh-session'
+require_relative 'host'
+require_relative 'conn'
 
 class Demo
+  attr_reader :host, :conn
   attr_reader :name, :desc
   attr_accessor :command
 
@@ -10,25 +12,26 @@ class Demo
     port = args[:port] || '22'
     username = args[:username] || 'root'
     password =  args[:password] || 'vagrant'
-    @session = RemoteOS::SSHSession.new(ip: ip, port: port, username: username, password: password)
+    @host = GuessOS::Host.new(ip: ip, port: port, username: username, password: password)
+    @conn = GuessOS::Conn(Host)
     @desc = :unkown
     @name = :unkown
     @command = 'lsb_release -d'
   end
 
   def show_info
-    @session.show_info
+    @host.show_info
 
-    puts "\n[ RemoteOSDemo ]\n"
+    puts "\n[GuessOS] Results\n"
     puts "  command  => #{@command}"
     puts "  desc     <= #{@desc}"
     puts "  name     <= #{@name}"
   end
 
   def guess_type(args)
-    @command = args[:command]
+    command = args[:command] || @command
     position = args[:position]
-    text = @session.exec(@command)
+    text = @conn.exec(command)
 
     words = text.split
     if words.size == 1
@@ -45,4 +48,3 @@ class Demo
     end
   end
 end
-
