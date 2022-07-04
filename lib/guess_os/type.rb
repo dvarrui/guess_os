@@ -6,15 +6,19 @@ module GuessOS
 
     def initialize(host)
       @host = host
-      @desc = :unkown
       @name = :unkown
+      @desc = :unkown
     end
 
     def show_info
       puts "\n"
       puts "==> Show Type info (#{@host.ip}:#{@host.port})"
-      puts "    desc = #{@desc}"
       puts "    name = #{@name}"
+      puts "    desc = #{@desc}"
+    end
+
+    def to_s
+      { name: @name, desc: @desc}
     end
 
     def guess

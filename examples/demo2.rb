@@ -2,7 +2,7 @@
 
 require_relative '../lib/guess_os/host'
 
-puts "[GuessOS] Demo"
+puts "[GuessOS] demo 2"
 
 host = GuessOS::Host.new(
   ip: 'localhost',

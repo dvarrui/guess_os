@@ -15,6 +15,10 @@ module GuessOS
       @type = GuessOS::Type.new(self)
     end
 
+    def os
+      @type.to_s
+    end
+
     def show_info
       puts "\n"
       puts "==> Show host info"

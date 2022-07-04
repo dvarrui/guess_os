@@ -8,7 +8,7 @@ Try to guess the operating system installed on the host (local or remote)
 1. Install Ruby on your system.
 1. `gem install --user-install guess_os`, to install gem.
 
-# Use
+# Usage
 
 ```ruby
 require 'guess_os'
@@ -20,7 +20,7 @@ host = GuessOS::Host.new(
   password: 'vagrant'
 )
 
-puts host.type
+puts host.os
 ```
 
 # Contact
