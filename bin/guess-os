@@ -1,5 +1,0 @@
-#!/usr/bin/env ruby
-
-require 'guess_os/cli'
-
-CLI.start(ARGV)
