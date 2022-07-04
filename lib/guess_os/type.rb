@@ -15,6 +15,7 @@ module GuessOS
     end
 
     def self.guess_gnulinux(host)
+      list = %w(debian ubuntu opensuse manjaro)
       command = 'lsb_release -d'
       conn = GuessOS::Conn.new(host)
 
@@ -26,6 +27,11 @@ module GuessOS
       type =  'gnu/linux'
       name =  items[1]&.downcase
       desc =  output
+
+      unless list.include? name
+        return OS.new(:unkown, :unkown, 'Unkown OS')
+      end
+
       OS.new(type, name, desc)
     end
 
@@ -38,7 +44,7 @@ module GuessOS
 
       output = conn.last_output
       items = output.split
-      type =  'minux'
+      type =  'minix'
       name =  items[7]&.downcase
       desc =  output
       OS.new(type, name, desc)
