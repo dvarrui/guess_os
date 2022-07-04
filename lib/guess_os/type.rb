@@ -7,13 +7,15 @@ module GuessOS
     def self.guess(host)
       command = 'lsb_release -d'
       conn = GuessOS::Conn.new(host)
-      output = conn.exec(command)
+
+      conn.exec(command)
+      return OS.new(:unkown, :unkown, conn.status) unless conn.ok
+
+      output = conn.last_output
       items = output.split
-
       type =  'gnu/linux'
-      name =  items[1].downcase
+      name =  items[1]&.downcase
       desc =  output
-
       OS.new(type, name, desc)
     end
 

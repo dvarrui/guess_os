@@ -1,19 +1,15 @@
 #!/usr/bin/env ruby
 
 require_relative '../lib/guess_os/host'
+require_relative '../lib/guess_os/conn'
 
 puts "[GuessOS] #{$0}"
 
-print '      ip? '; ip = gets.chomp
-print '    port? '; port = gets.to_i
-print 'username? '; username = gets.chomp
-print 'password? '; password = gets.chomp
-
 host = GuessOS::Host.new(
-  ip: ip,
-  port: port,
-  username: username,
-  password: password
+  ip: 'localhost',
+  port: 2241,
+  username: 'vagrant',
+  password: 'vagrant'
 )
 
 puts "\n"

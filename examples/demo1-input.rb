@@ -2,10 +2,10 @@
 
 require_relative '../lib/guess_os/host'
 
-puts "[GuessOS] demo 3"
+puts "[GuessOS] #{$0}"
 
-print 'ip? '; ip = gets.chomp
-print 'port? '; port = gets.to_i
+print '      ip? '; ip = gets.chomp
+print '    port? '; port = gets.to_i
 print 'username? '; username = gets.chomp
 print 'password? '; password = gets.chomp
 
