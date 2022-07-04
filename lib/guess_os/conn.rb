@@ -40,8 +40,6 @@ module GuessOS
             " exec: #{command}")
         exit 1
       end
-      #@result.exitstatus = text.exitstatus
-      #[text, text.exitstatus]
       @last_output = output
     end
   end
