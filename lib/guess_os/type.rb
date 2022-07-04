@@ -8,10 +8,13 @@ module GuessOS
       os = guess_gnulinux(host)
       return os unless os.type == :unkown
 
-      os = guess_minix(host)
+      os = guess_cygwin(host)
       return os unless os.type == :unkown
 
-      os = guess_cygwin(host)
+      os = guess_windows(host)
+      return os unless os.type == :unkown
+
+      os = guess_minix(host)
       return os unless os.type == :unkown
 
       os
@@ -38,20 +41,18 @@ module GuessOS
       OS.new(type, name, desc)
     end
 
-    def self.guess_minix(host)
+    def self.guess_windows(host)
       conn = GuessOS::Conn.new(host)
-      command = 'cat /etc/rc.d/minixrc |grep MINIX| head -n 1'
-
+      command = 'echo %windir%'
       conn.exec(command)
 
-      identified = conn.ok && conn.last_output.include?('MINIX')
+      identified = conn.ok && conn.last_output.include?('Windows')
       return OS.new(:unkown, :unkown, conn.status) unless identified
 
       output = conn.last_output
-      items = output.split
-      type =  'minix'
-      name =  'minix'
-      desc =  output.gsub("\n", '')
+      type =  'windows'
+      name =  'windows'
+      desc =  output.gsub("\r", '')
       OS.new(type, name, desc)
     end
 
@@ -70,16 +71,21 @@ module GuessOS
       OS.new(type, name, desc)
     end
 
-    def reviseguess(host)
-      commands = {
-        win10: 'pwd',
-        winserver: 'echo %windir%',
-      }
+    def self.guess_minix(host)
+      conn = GuessOS::Conn.new(host)
+      command = 'cat /etc/rc.d/minixrc |grep MINIX| head -n 1'
 
-      position = {
-        win10: 0,
-        winserver: 0,
-      }
+      conn.exec(command)
+
+      identified = conn.ok && conn.last_output.include?('MINIX')
+      return OS.new(:unkown, :unkown, conn.status) unless identified
+
+      output = conn.last_output
+      items = output.split
+      type =  'minix'
+      name =  'minix'
+      desc =  output.gsub("\n", '')
+      OS.new(type, name, desc)
     end
   end
 end
