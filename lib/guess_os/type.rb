@@ -1,4 +1,6 @@
 
+require_relative 'ai'
+
 module GuessOS
   class Type
     attr_reader :host
@@ -22,6 +24,9 @@ module GuessOS
     end
 
     def guess
+      data = GuessOS::AI.guess_gnulinux(@host)
+      @name = data[:name]
+      @desc = data[:desc]
     end
   end
 end
