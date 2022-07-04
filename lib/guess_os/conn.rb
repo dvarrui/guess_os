@@ -24,7 +24,7 @@ module GuessOS
     end
 
     def local_exec(command)
-      output = `command`
+      output = `#{command}`
       if $?.exitstatus.zero?
         @ok = true
         @status = 'Ok'
