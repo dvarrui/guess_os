@@ -10,11 +10,21 @@ Try to guess the operating system installed on the host (local or remote)
 
 # Usage
 
+Guess local host OS:
+```ruby
+require 'guess_os'
+
+host = GuessOS::Host.new(ip: 'localhost')
+
+puts host.os.name
+```
+
+Guess remote host OS:
 ```ruby
 require 'guess_os'
 
 host = GuessOS::Host.new(
-  ip: 'localhost',
+  ip: '192.168.1.42',
   port: 2241,
   username: 'vagrant',
   password: 'vagrant'
