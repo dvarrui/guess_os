@@ -20,9 +20,8 @@ TEXT
 lines = text.split("\n")
 total = lines.size
 lines.each_with_index do |line, index|
-  print '=' * 10 
-  print " [ INFO ] Step #{index + 1}/#{total}" 
-  puts '=' * 10 
+  print "=" * 10
+  print " [ INFO ] Step #{index + 1}/#{total}"
+  puts "=" * 10
   system(line)
 end
-

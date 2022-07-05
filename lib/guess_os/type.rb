@@ -50,9 +50,9 @@ module GuessOS
       return OS.new(:unkown, :unkown, conn.status) unless identified
 
       output = conn.last_output
-      type =  'windows'
-      name =  'windows'
-      desc =  output.gsub("\r", '')
+      type = 'windows'
+      name = 'windows'
+      desc = output.gsub("\r", '')
       desc.gsub!("\n", '')
       OS.new(type, name, desc)
     end

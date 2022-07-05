@@ -12,3 +12,8 @@ end
 require "standard/rake"
 
 task default: %i[test standard]
+#require "bundler/setup"
+#require "bump/tasks"
+
+#Bundler::GemHelper.install_tasks
+
