@@ -3,5 +3,5 @@
 require_relative "guess_os/version"
 require_relative 'guess_os/host'
 
-module GuessOs
+module GuessOS
 end

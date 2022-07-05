@@ -4,7 +4,7 @@ require_relative "lib/guess_os/version"
 
 Gem::Specification.new do |spec|
   spec.name = "guess_os"
-  spec.version = GuessOs::VERSION
+  spec.version = GuessOS::VERSION
   spec.authors = ["David Vargas"]
   spec.email = ["dvarrui@protonmail.com"]
 
