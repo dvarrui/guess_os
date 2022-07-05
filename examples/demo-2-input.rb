@@ -5,9 +5,13 @@ require_relative '../lib/guess_os/host'
 puts "[GuessOS] #{$0}"
 
 print '      ip? '; ip = gets.chomp
-print '    port? '; port = gets.to_i
+print '    port? '; port = gets.chomp
 print 'username? '; username = gets.chomp
 print 'password? '; password = gets.chomp
+
+port = nil if port.empty?
+username = nil if username.empty?
+password = nil if password.empty?
 
 host = GuessOS::Host.new(
   ip: ip,
