@@ -37,6 +37,23 @@ puts host.os.name
 
 > More [examples](examples)
 
+Current OS list:
+
+| OS type   | OS name  |
+| --------- | -------- |
+| gnu/linux | opensuse |
+| gnu/linux | debian  |
+| gnu/linux | ubuntu  |
+| gnu/linux | manjaro |
+| cygwin    | cygwin  |
+| windows   | windows |
+| minix     | minix   |
+| unkown    | unkown  |
+
 # Contact
 
 * **Email**: `teuton.software@protonmail.com`
+
+
+
+
