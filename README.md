@@ -16,6 +16,7 @@ require 'guess_os'
 
 host = GuessOS::Host.new(ip: 'localhost')
 
+puts host.os.type
 puts host.os.name
 ```
 
@@ -30,6 +31,7 @@ host = GuessOS::Host.new(
   password: 'vagrant'
 )
 
+puts host.os.type
 puts host.os.name
 ```
 
