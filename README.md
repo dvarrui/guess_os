@@ -41,10 +41,7 @@ Current OS list:
 
 | OS type   | OS name  |
 | --------- | -------- |
-| gnu/linux | opensuse |
-| gnu/linux | debian  |
-| gnu/linux | ubuntu  |
-| gnu/linux | manjaro |
+| gnu/linux | opensuse, debian, ubuntu, manjaro |
 | cygwin    | cygwin  |
 | windows   | windows |
 | minix     | minix   |
