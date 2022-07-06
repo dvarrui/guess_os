@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-require 'guess_os'
 # require_relative '../lib/guess_os'
+require 'guess_os'
 
 host = GuessOS::Host.new(
   ip: '192.168.1.42',
