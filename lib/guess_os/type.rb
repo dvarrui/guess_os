@@ -43,17 +43,22 @@ module GuessOS
 
     def self.guess_windows(host)
       conn = GuessOS::Conn.new(host)
-      command = 'echo %windir%'
+      command = 'ver'
       conn.exec(command)
+      # command = 'echo %windir%' => Windows
+      # ver => Microsoft Windows [Version 10.0.20348.469]
 
       identified = conn.ok && conn.last_output.include?('Windows')
       return OS.new(:unkown, :unkown, conn.status) unless identified
 
       output = conn.last_output
+      output.gsub!("\r", '')
+      output.gsub!("\n", '')
+      items = output.split
+
       type = 'windows'
-      name = 'windows'
-      desc = output.gsub("\r", '')
-      desc.gsub!("\n", '')
+      name = "windows #{items[3].split('.').first}"
+      desc = output
       OS.new(type, name, desc)
     end
 
