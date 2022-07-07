@@ -7,6 +7,6 @@ gemspec
 
 # gem "test-unit", "~> 3.0"
 
-gem 'bump'
-gem 'rake'
+gem "bump"
+gem "rake"
 gem "standard"
