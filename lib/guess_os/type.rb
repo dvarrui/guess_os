@@ -8,10 +8,13 @@ module GuessOS
       os = guess_gnulinux(host)
       return os unless os.type == :unkown
 
-      os = guess_cygwin(host)
+      os = guess_macos(host)
       return os unless os.type == :unkown
 
       os = guess_windows(host)
+      return os unless os.type == :unkown
+
+      os = guess_cygwin(host)
       return os unless os.type == :unkown
 
       os = guess_minix(host)
@@ -79,7 +82,7 @@ module GuessOS
 
     def self.guess_macos(host)
       conn = GuessOS::Conn.new(host)
-      command = 'ver'
+      command = 'sw_vers | grep ProductName'
       conn.exec(command)
       # 1.9.2 kevin-macbookpro:~ $ system_profiler SPSoftwareDataType
       # System Version: Mac OS X 10.7.4 (11E53)
@@ -88,19 +91,16 @@ module GuessOS
       # ProductName:    Mac OS X
       # ProductVersion: 10.7.4
 
-      command = 'sw_vers '
-      # ver => Microsoft Windows [Version 10.0.20348.469]
-
-      identified = conn.ok && conn.last_output.include?('Windows')
+      identified = conn.ok && conn.last_output.include?('Mac OS')
       return OS.new(:unkown, :unkown, conn.status) unless identified
 
+      command = 'sw_vers | grep ProductVersion'
+      conn.exec(command)
       output = conn.last_output
-      output.gsub!("\r", '')
-      output.gsub!("\n", '')
       items = output.split
 
       type = :macos
-      name = "Mac OS #{items[3].split('.').first}"
+      name = "Mac OS #{items[2].split('.').first}"
       desc = output
       OS.new(type, name, desc)
     end
