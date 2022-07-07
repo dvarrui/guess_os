@@ -41,11 +41,12 @@ Current OS list:
 
 | OS type   | OS name  |
 | --------- | -------- |
-| gnu/linux | opensuse, debian, ubuntu, manjaro |
-| cygwin    | cygwin  |
-| windows   | windows |
-| minix     | minix   |
-| unkown    | unkown  |
+| :gnulinux | opensuse, debian, ubuntu, manjaro, mint |
+| :windows  | windows |
+| :macos    | macos   |
+| :cygwin   | cygwin  |
+| :minix    | minix   |
+| :unkown   | unkown  |
 
 # Contact
 
