@@ -1,5 +1,4 @@
-
-require_relative 'type'
+require_relative "type"
 
 module GuessOS
   class Host
@@ -7,15 +6,15 @@ module GuessOS
     attr_reader :os
 
     def initialize(args = {})
-      @ip = args[:ip] || 'localhost'
-      @port = args[:port] || '22'
-      @username = args[:username] || 'root'
-      @password =  args[:password] || 'vagrant'
+      @ip = args[:ip] || "localhost"
+      @port = args[:port] || "22"
+      @username = args[:username] || "vagrant"
+      @password = args[:password] || "vagrant"
       @os = GuessOS::Type.guess(self)
     end
 
     def local?
-      return true if (ip == 'localhost') || (ip == '127.0.0.1')
+      return true if (ip == "localhost") || (ip == "127.0.0.1")
 
       false
     end

@@ -1,4 +1,3 @@
-
 module GuessOS
   class OS
     attr_reader :type, :name, :desc
@@ -10,7 +9,7 @@ module GuessOS
     end
 
     def to_s
-      { type: @type, name: @name, desc: @desc }
+      {type: @type, name: @name, desc: @desc}
     end
   end
 end
