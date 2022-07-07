@@ -1,6 +1,5 @@
-
-require_relative 'conn'
-require_relative 'os'
+require_relative "conn"
+require_relative "os"
 
 module GuessOS
   module Type
@@ -25,20 +24,20 @@ module GuessOS
 
     def self.guess_gnulinux(host)
       conn = GuessOS::Conn.new(host)
-      command = 'lsb_release -d'
+      command = "lsb_release -d"
 
       conn.exec(command)
       return OS.new(:unkown, :unkown, conn.status) unless conn.ok
 
       output = conn.last_output
       items = output.split
-      type =  :gnulinux
-      name =  items[1]&.downcase
-      desc =  output
+      type = :gnulinux
+      name = items[1]&.downcase
+      desc = output
 
-      list = %w(debian ubuntu opensuse manjaro mint)
+      list = %w[debian ubuntu opensuse manjaro mint arch]
       unless list.include? name
-        return OS.new(:unkown, :unkown, 'Unkown OS')
+        return OS.new(:unkown, :unkown, "Unkown OS")
       end
 
       OS.new(type, name, desc)
@@ -46,21 +45,21 @@ module GuessOS
 
     def self.guess_windows(host)
       conn = GuessOS::Conn.new(host)
-      command = 'ver'
+      command = "ver"
       conn.exec(command)
       # ver => Microsoft Windows [Version 10.0.20348.469]
       # command = 'echo %windir%' => Windows
 
-      identified = conn.ok && conn.last_output.include?('Windows')
+      identified = conn.ok && conn.last_output.include?("Windows")
       return OS.new(:unkown, :unkown, conn.status) unless identified
 
       output = conn.last_output
-      output.gsub!("\r", '')
-      output.gsub!("\n", '')
+      output.delete!("\r")
+      output.delete!("\n")
       items = output.split
 
       type = :windows
-      name = "windows #{items[3].split('.').first}"
+      name = "windows #{items[3].split(".").first}"
       desc = output
       OS.new(type, name, desc)
     end
