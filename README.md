@@ -6,7 +6,9 @@ Try to guess the operating system installed on the host (local or remote)
 # Documentation
 
 1. Install Ruby on your system.
-1. `gem install --user-install guess_os`, to install gem.
+1. `gem install --user-install guess_os`, to install gem as normal user.
+
+> `sudo gem install --user-install guess_os`, to install gem as root user.
 
 # Usage command 
 
