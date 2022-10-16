@@ -8,9 +8,12 @@ Try to guess the operating system installed on the host (local or remote)
 1. Install Ruby on your system.
 1. `gem install --user-install guess_os`, to install gem.
 
-# Usage
+# Usage command 
 
-Guess local host OS:
+# Usage gem
+
+**localhost example**: Guess local host OS.
+
 ```ruby
 require 'guess_os'
 
@@ -20,7 +23,8 @@ puts host.os.type
 puts host.os.name
 ```
 
-Guess remote host OS:
+**Remote host example**: Guess remote host OS. The connection is established via SSH.
+
 ```ruby
 require 'guess_os'
 
@@ -51,7 +55,4 @@ Current OS list:
 # Contact
 
 * **Email**: `teuton.software@protonmail.com`
-
-
-
 
