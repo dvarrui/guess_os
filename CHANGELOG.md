@@ -5,6 +5,7 @@
 - Add LICENSE
 - Fix default test
 - Refactoring some code
+- New feature: clean description text. Remove tab and CR.
 
 ## [0.1.1] - 2022-07-07
 
