@@ -4,7 +4,7 @@ class GNULinux
     command = "lsb_release -d"
 
     conn.exec(command)
-    return OS.new(:unkown, :unkown, conn.status) unless conn.ok
+    return GuessOS::OS.new(:unkown, :unkown, conn.status) unless conn.ok
 
     output = conn.last_output
     items = output.split
