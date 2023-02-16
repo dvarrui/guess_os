@@ -4,7 +4,7 @@ module GuessOS
 
     def initialize(type, name, desc)
       @type = type
-      @name = name.strip
+      @name = name.to_s.strip
       @desc = clean(desc)
     end
 
