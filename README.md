@@ -10,9 +10,24 @@ Try to guess the operating system installed on the host (local or remote)
 
 > `sudo gem install --user-install guess_os`, to install gem as root user.
 
-# Usage command 
+# Usage
 
-# Usage gem
+## Command
+
+```console
+❯ ./bin/guess_os
+[GuessOS]
+      ip? localhost
+    port?
+username?
+password?
+--------------------------------------------------
+  Type: gnulinux
+  Name: opensuse
+  Desc: Description: openSUSE Tumbleweed
+```
+
+## Gem
 
 **localhost example**: Guess local host OS.
 
@@ -57,4 +72,3 @@ Current OS list:
 # Contact
 
 * **Email**: `teuton.software@protonmail.com`
-

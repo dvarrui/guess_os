@@ -24,5 +24,7 @@ host = GuessOS::Host.new(
   password: password
 )
 
-puts '=' * 50 + "\n"
-puts host.os.to_s
+puts "-" * 50 + "\n"
+puts "  Type: #{host.os.type}"
+puts "  Name: #{host.os.name}"
+puts "  Desc: #{host.os.desc}"
