@@ -23,7 +23,12 @@ module GuessOS
     end
 
     def local_exec(command)
-      output = `#{command}`
+      begin
+        output = `#{command}`
+      rescue
+        @ok = false
+        @status = "Error: Command not found!"
+      end
       if $?.exitstatus.zero?
         @ok = true
         @status = "Ok"
