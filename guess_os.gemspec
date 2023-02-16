@@ -25,5 +25,5 @@ Gem::Specification.new do |spec|
   spec.files = Dir.glob(File.join("lib", "**", "*.*"))
   spec.required_ruby_version = ">= 2.6.0"
 
-  s.add_runtime_dependency "net-ssh", "~> 5.2"  # 5.0
+  spec.add_runtime_dependency "net-ssh", "~> 5.2"  # 5.0
 end
