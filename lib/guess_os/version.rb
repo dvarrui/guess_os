@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 module GuessOS
-  VERSION = "0.1.9"
+  VERSION = "0.1.10"
   NAME = "guess_os"
 end
