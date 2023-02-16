@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.1.3] - 2023-02-16
+
+- Add dependecy with net-ssh
+
 ## [0.1.2] - 2023-02-16
 
 - Add LICENSE

@@ -21,6 +21,9 @@ Gem::Specification.new do |spec|
                         + Dir.glob(File.join("docs", "**", "*.md"))
 
   spec.executables << "guess_os"
+  spec.executables << "guess-os"
   spec.files = Dir.glob(File.join("lib", "**", "*.*"))
   spec.required_ruby_version = ">= 2.6.0"
+
+  s.add_runtime_dependency "net-ssh", "~> 5.2"  # 5.0
 end
