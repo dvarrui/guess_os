@@ -29,7 +29,10 @@ module GuessOS
         @ok = false
         @status = "Error: Command not found!"
       end
-      if $?.exitstatus.zero?
+      if $?.nil?
+        @ok = false
+        @status = "Error: Command not found!"
+      elsif $?.exitstatus.zero?
         @ok = true
         @status = "Ok"
       else
