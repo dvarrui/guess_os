@@ -1,12 +1,12 @@
 #!/usr/bin/env ruby
 
-require_relative '../lib/guess_os/host'
-require_relative '../lib/guess_os/conn'
+require_relative "../lib/guess_os/host"
+require_relative "../lib/guess_os/conn"
 
 puts "[GuessOS] #{$0}"
-puts '-' * 50 
+puts "-" * 50
 
-host = GuessOS::Host.new(ip: 'localhost')
+host = GuessOS::Host.new(ip: "localhost")
 
 puts "\n"
 puts "==> Show host info"
@@ -17,7 +17,7 @@ puts "    password = #{host.password}"
 
 conn = GuessOS::Conn.new(host)
 
-cmd = 'lsb_release -d'
+cmd = "lsb_release -d"
 puts "\n==> Execute command: #{cmd}"
 puts "    #{conn.exec(cmd)}"
 

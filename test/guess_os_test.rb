@@ -1,15 +1,12 @@
 # frozen_string_literal: true
 
 require "test_helper"
+require "guess_os/version"
 
-class GuessOsTest < Test::Unit::TestCase
+class GuessOSTest < Test::Unit::TestCase
   test "VERSION" do
     assert do
-      ::GuessOs.const_defined?(:VERSION)
+      ::GuessOS.const_defined?(:VERSION)
     end
-  end
-
-  test "something useful" do
-    assert_equal("expected", "actual")
   end
 end

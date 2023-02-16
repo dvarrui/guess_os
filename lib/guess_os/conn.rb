@@ -1,5 +1,4 @@
-
-require 'net/ssh'
+require "net/ssh"
 
 module GuessOS
   class Conn
@@ -10,7 +9,7 @@ module GuessOS
 
     def initialize(host)
       @host = host
-      @last_output = ''
+      @last_output = ""
       @status = nil
       @ok = nil
     end
@@ -27,7 +26,7 @@ module GuessOS
       output = `#{command}`
       if $?.exitstatus.zero?
         @ok = true
-        @status = 'Ok'
+        @status = "Ok"
       else
         @ok = false
         @status = "Exit status: #{$?.exitstatus}"
@@ -37,16 +36,16 @@ module GuessOS
     end
 
     def remote_exec(command)
-      output = 'Error'
+      output = "Error"
       begin
         session = Net::SSH.start(@host.ip,
-                                 @host.username,
-                                 port: @host.port,
-                                 password: @host.password,
-                                 keepalive: true,
-                                 timeout: 30,
-                                 non_interactive: true)
-        if session.class == Net::SSH::Connection::Session
+          @host.username,
+          port: @host.port,
+          password: @host.password,
+          keepalive: true,
+          timeout: 30,
+          non_interactive: true)
+        if session.instance_of?(Net::SSH::Connection::Session)
           output = session.exec!(command)
           @status = :ok
           @ok = true
@@ -54,19 +53,19 @@ module GuessOS
       rescue Errno::EHOSTUNREACH
         @status = "[ERROR] Host #{@host.ip} unreachable!"
       rescue Net::SSH::AuthenticationFailed
-        @status = '[ERROR] SSH::AuthenticationFailed!'
+        @status = "[ERROR] SSH::AuthenticationFailed!"
       rescue Net::SSH::HostKeyMismatch
-        @status = 'SSH::HostKeyMismatch!'
+        @status = "SSH::HostKeyMismatch!"
         puts("* The destination server's fingerprint is not matching " \
-            'what is in your local known_hosts file.')
-        puts('* Remove the existing entry in your local known_hosts file')
+            "what is in your local known_hosts file.")
+        puts("* Remove the existing entry in your local known_hosts file")
         puts("* Try this => ssh-keygen -f '/home/USERNAME/.ssh/known_hosts' " \
             "-R #{@host.ip}")
       rescue SocketError
         @status = "[ERROR] SocketError with IP/port [#{@host.ip}:#{@host.port}]"
       rescue Errno::ECONNREFUSED
         @status = "[ERROR] ConnRefused: SSH on [#{@host.username}@#{@host.ip}:#{@host.port}]"
-      rescue StandardError => e
+      rescue => e
         @status = "[#{e.class}] SSH on <#{@host.username}@#{@host.ip}:#{@host.port}>" \
             " exec: #{command}"
       end
