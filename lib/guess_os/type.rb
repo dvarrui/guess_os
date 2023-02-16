@@ -6,7 +6,7 @@ module GuessOS
       os = GNULinux.guess(host)
       return os unless os.type == :unkown
 
-      os = guess_macos(host)
+      os = MacOS.guess(host)
       return os unless os.type == :unkown
 
       os = Windows.guess(host)
