@@ -2,7 +2,7 @@
 
 require_relative '../lib/guess_os/host'
 
-def input_options
+def get_input_options
   puts "[GuessOS]"
 
   print '      ip? '; ip = gets.chomp
@@ -40,5 +40,5 @@ def try_guess_with(options)
   puts "    Desc: #{host.os.desc}"
 end
 
-options = input_options
+options = get_input_options
 try_guess_with options
