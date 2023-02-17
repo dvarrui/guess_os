@@ -29,7 +29,8 @@ It is true that nmap already performs the function of finding out the OS. We did
 ## Command
 
 ```console
-❯ ./bin/guess_os
+❯ guess_os
+
 [GuessOS]
       ip? localhost
     port?
