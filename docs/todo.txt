@@ -1,0 +1,3 @@
+
+Include nmap detection
+https://github.com/postmodern/ruby-nmap
