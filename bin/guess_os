@@ -2,30 +2,43 @@
 
 require_relative '../lib/guess_os/host'
 
-puts "[GuessOS]"
+def input_options
+  puts "[GuessOS]"
 
-print '      ip? '; ip = gets.chomp
-if ip.empty?
-  ip = "localhost"
-elsif ip != "localhost"
-  print '    port? '; port = gets.chomp
-  print 'username? '; username = gets.chomp
-  print 'password? '; password = gets.chomp
+  print '      ip? '; ip = gets.chomp
+  if ip.empty?
+    ip = "localhost"
+  elsif ip != "localhost"
+    print '    port? '; port = gets.chomp
+    print 'username? '; username = gets.chomp
+    print 'password? '; password = gets.chomp
 
-  port = nil if port.empty?
-  username = nil if username.empty?
-  password = nil if password.empty?
+    port = nil if port.empty?
+    username = nil if username.empty?
+    password = nil if password.empty?
+  end
+  {
+    ip: ip,
+    port: port,
+    username: username,
+    password: password
+  }
 end
 
-host = GuessOS::Host.new(
-  ip: ip,
-  port: port,
-  username: username,
-  password: password
-)
+def try_guess_with(options)
+  host = GuessOS::Host.new(
+    ip: options[:ip],
+    port: options[:port],
+    username: options[:username],
+    password: options[:password]
+  )
 
-puts "-" * 50 + "\n"
-puts "[Results]"
-puts "    Type: #{host.os.type}"
-puts "    Name: #{host.os.name}"
-puts "    Desc: #{host.os.desc}"
+  puts "-" * 50 + "\n"
+  puts "[Results]"
+  puts "    Type: #{host.os.type}"
+  puts "    Name: #{host.os.name}"
+  puts "    Desc: #{host.os.desc}"
+end
+
+options = input_options
+try_guess_with options
