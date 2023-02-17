@@ -10,8 +10,12 @@ class Windows
     return GuessOS::OS.new(:unkown, :unkown, conn.status) unless identified
 
     output = conn.last_output
-    output.delete!("\r")
-    output.delete!("\n")
+    begin
+      output.tr!("\r", ".")
+      output.tr!("\n", ".")
+    rescue
+      # nothing
+    end
     items = output.split
 
     type = :windows
