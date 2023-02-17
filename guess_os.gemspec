@@ -6,7 +6,9 @@ Gem::Specification.new do |spec|
   spec.name = "guess_os"
   spec.version = GuessOS::VERSION
   spec.summary = "Guess local or remote OS."
-  spec.description = "Guess local or remote OS."
+  spec.description = "Try to guess the operating system " \
+    "installed on the host (local or remote). " \
+    "Using SSH to connect remote host."
 
   spec.license = "GPL-3.0"
   spec.authors = ["David Vargas"]

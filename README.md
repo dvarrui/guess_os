@@ -1,7 +1,15 @@
 
 # GuessOS
 
-Try to guess the operating system installed on the host (local or remote)
+Try to guess the operating system installed on the host (local or remote). Using SSH to connect remote host.
+
+**But, What about nmap?**
+
+It is true that nmap already performs the function of finding out the OS. We didn't want to repeat the work of nmap. The idea of the gem is:
+
+* Work without nmap installed. Its posible some host have not installed.
+* nmap is fine but slow to return results. We wanted to integrate this functionality into another application and were not completely satisfied with the nmap response times.
+* In an extension of this gem we are thinking that it will use of nmap to obtain the results when it is a remote machine and we do not have SSH access to it.
 
 # Documentation
 
