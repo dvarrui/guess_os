@@ -12,6 +12,12 @@ Try to guess the operating system installed on the host (local or remote)
 
 # Usage
 
+> **WARNING**
+>
+> **guess_os** accepts several parameters (ip, username, password) to open an SSH connection to the remote host, and guess remote OS.
+>
+> In the case of writing IP="localhost" SSH is not used.
+
 ## Command
 
 ```console
