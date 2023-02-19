@@ -2,22 +2,13 @@ require_relative "type/all"
 
 module GuessOS
   class Type
+    TYPES = [ Windows, GNULinux, MacOS, Cygwin, Minix ]
+
     def self.guess(host)
-      os = Windows.guess(host)
-      return os unless os.type == :unkown
-
-      os = GNULinux.guess(host)
-      return os unless os.type == :unkown
-
-      os = MacOS.guess(host)
-      return os unless os.type == :unkown
-
-      os = Cygwin.guess(host)
-      return os unless os.type == :unkown
-
-      os = Minix.guess(host)
-      return os unless os.type == :unkown
-
+      TYPES.each do |klass|
+        os = klass.send :guess, host
+        return os unless os.type == :unkown
+      end
       os
     end
   end
