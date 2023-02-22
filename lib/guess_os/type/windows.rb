@@ -13,7 +13,7 @@ class Windows
   end
 
   def self.try_with_regedit(conn)
-    command = 'run "reg query \"HKLM\\Software\\Microsoft\\Windows NT\\CurrentVersion\" /t REG_SZ'
+    command = "reg query \"HKLM\\Software\\Microsoft\\Windows NT\\CurrentVersion\" /t REG_SZ"
     conn.exec(command)
 
     identified = conn.ok && conn.last_output.include?("Windows")
