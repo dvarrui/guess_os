@@ -1,5 +1,9 @@
 module GuessOS
   class OS
+    def self.unkown
+      OS.new(:unkown, :unkown, "Unkown")
+    end
+
     attr_reader :type, :name, :desc
 
     def initialize(type, name, desc)
