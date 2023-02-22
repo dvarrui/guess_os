@@ -2,7 +2,7 @@ require_relative "type/all"
 
 module GuessOS
   class Type
-    TYPES = [ Windows, GNULinux, MacOS, Cygwin, Minix ]
+    TYPES = [Windows, GNULinux, MacOS, Cygwin, Minix]
 
     def self.guess(host)
       TYPES.each do |klass|

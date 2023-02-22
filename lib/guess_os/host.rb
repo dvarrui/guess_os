@@ -22,5 +22,9 @@ module GuessOS
     def remote?
       !local?
     end
+
+    def self.unkown
+      GuessOS::OS.new(:unkown, :unkown, "Unkown")
+    end
   end
 end
