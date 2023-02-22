@@ -16,7 +16,7 @@ It is true that nmap already performs the function of finding out the OS. We did
 1. Install Ruby on your system.
 1. `gem install --user-install guess_os`, to install gem as normal user.
 
-> `sudo gem install --user-install guess_os`, to install gem as root user.
+> `sudo gem install guess_os`, to install gem as root user.
 
 # Usage
 
