@@ -8,8 +8,7 @@ class Windows
     os = try_with_ver(conn)
     return os unless os.type == :unkown
 
-    os = try_with_folder(conn)
-    os
+    try_with_folder(conn)
   end
 
   def self.try_with_regedit(conn)
