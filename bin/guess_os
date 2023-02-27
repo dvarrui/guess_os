@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require_relative '../lib/guess_os/host'
+require "debug"
 
 def get_input_options
   puts "[GuessOS]"
@@ -18,14 +19,16 @@ def get_input_options
     password = nil if password.empty?
   end
   {
-    ip: ip,
-    port: port,
-    username: username,
-    password: password
+    ip: ip || "localhost",
+    port: port || "",
+    username: username || "",
+    password: password || ""
   }
 end
 
 def try_guess_with(options)
+  puts "-" * 50 + "\n"
+  puts "[Trying]"
   host = GuessOS::Host.new(
     ip: options[:ip],
     port: options[:port],
