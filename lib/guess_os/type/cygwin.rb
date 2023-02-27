@@ -5,7 +5,7 @@ class Cygwin
     conn.exec(command)
 
     identified = conn.ok && conn.last_output.include?("/cygdrive")
-    return GuessOS::OS.new(:unkown, :unkown, conn.status) unless identified
+    return GuessOS::OS.unkown unless identified
 
     output = conn.last_output
     type = :cygwin

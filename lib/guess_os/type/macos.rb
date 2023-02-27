@@ -11,7 +11,7 @@ class MacOS
     # ProductVersion: 10.7.4
 
     identified = conn.ok && conn.last_output.include?("Mac OS")
-    return GuessOS::OS.new(:unkown, :unkown, conn.status) unless identified
+    return GuessOS::OS.unkown unless identified
 
     command = "sw_vers | grep ProductVersion"
     conn.exec(command)

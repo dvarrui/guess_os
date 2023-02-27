@@ -40,7 +40,11 @@ module GuessOS
         @status = "Exit status: #{$?.exitstatus}"
       end
 
-      @last_output = output
+      @last_output = if output.nil?
+        ""
+      else
+        output.encode(Encoding::UTF_8, invalid: :replace)
+      end
     end
 
     def remote_exec(command)
@@ -77,7 +81,11 @@ module GuessOS
         @status = "[#{e.class}] SSH on <#{@host.username}@#{@host.ip}:#{@host.port}>" \
             " exec: #{command}"
       end
-      @last_output = output
+      @last_output = if output.nil?
+        ""
+      else
+        output.encode(Encoding::UTF_8, invalid: :replace)
+      end
     end
   end
 end

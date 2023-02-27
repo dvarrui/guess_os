@@ -4,7 +4,7 @@ class GNULinux
     command = "lsb_release -d"
 
     conn.exec(command)
-    return GuessOS::OS.new(:unkown, :unkown, conn.status) unless conn.ok
+    return GuessOS::OS.unkown unless conn.ok
 
     output = conn.last_output
     items = output.split
@@ -14,7 +14,7 @@ class GNULinux
 
     list = %w[debian ubuntu opensuse manjaro mint arch]
     unless list.include? name
-      return GuessOS::OS.new(:unkown, :unkown, "Unkown OS")
+      return GuessOS::OS.unkown
     end
 
     GuessOS::OS.new(type, name, desc)

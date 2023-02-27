@@ -9,7 +9,7 @@ class Windows
     return os unless os.type == :unkown
 
     os = try_with_folder(conn)
-    return os unless os.type == :unkown
+    os
   end
 
   def self.try_with_regedit(conn)

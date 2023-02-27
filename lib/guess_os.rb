@@ -2,7 +2,6 @@
 
 require_relative "guess_os/version"
 require_relative "guess_os/host"
-
 ##
 # Usage:
 #
